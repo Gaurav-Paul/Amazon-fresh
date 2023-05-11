@@ -1,7 +1,7 @@
 from tkinter import *
 import os
 root = Tk()
-root.title("Amazon Fresh")
+root.title("Grocery Browsing app")
 root.maxsize(1366, 728)
 root.minsize(1366, 768)
 root.configure(background="WHITE")

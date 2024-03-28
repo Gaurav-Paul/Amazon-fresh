@@ -5,7 +5,10 @@ root.title("Grocery Browsing app")
 root.maxsize(1366, 728)
 root.minsize(1366, 768)
 root.configure(background="WHITE")
-root.state("zoomed")
+try:
+    root.state("zoomed")
+except:
+    pass
 fnt = ("Amazon Ember", 30, "bold")
 # name: 0   Cost: 1     amt:2      quantity type:3
 items = [[["onion", 50, 1, "kg"], ["Carrot", 50, 1, "kg"], ["potato", 50, 1, "kg"], ["radish", 50, 1, "kg"], ["cabbage", 50, 1, "kg"], ["tomato", 50, 1, "kg"]],
@@ -54,12 +57,12 @@ def screen_change(mode):
             screen_prev_button["state"] = "disabled"
         screen -= 1
 
-    pics = [PhotoImage(file=f"images/{items[screen-1][0][0]}.png"),
-            PhotoImage(file=f"images/{items[screen-1][1][0]}.png"),
-            PhotoImage(file=f"images/{items[screen-1][2][0]}.png"),
-            PhotoImage(file=f"images/{items[screen-1][3][0]}.png"),
-            PhotoImage(file=f"images/{items[screen-1][4][0]}.png"),
-            PhotoImage(file=f"images/{items[screen-1][5][0]}.png"),
+    pics = [PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][0][0]}.png"),
+            PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][1][0]}.png"),
+            PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][2][0]}.png"),
+            PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][3][0]}.png"),
+            PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][4][0]}.png"),
+            PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][5][0]}.png"),
             PhotoImage(file="images/back.PNG"),
             PhotoImage(file="images/search.png")]
 
@@ -95,7 +98,7 @@ def item_desc_screen(item_no):
     quantity_type = items[screen - 1][item_no - 1][3]
     price = quantity * items[screen - 1][item_no - 1][1]
     item = items[screen-1][item_no-1][0]
-    item_image = PhotoImage(file=f"images/{items[screen-1][item_no-1][0]}_image.png")
+    item_image = PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][item_no-1][0]}_image.png")
     back_button = Button(root, image=pics[6], borderwidth=0, highlightthickness=0, background="WHITE",command=lambda: back("menu"))
     item_name["text"] = f"{items[screen - 1][item_no - 1][0]}".capitalize()
     item_quantity["text"] = f"{quantity} {quantity_type}"
@@ -283,8 +286,8 @@ def login(username, password):
             search_button.grid(row=3, column=0)
 
 def signup(username, password):
-    if not os.path.exists(f"users/{username}.txt") and len(password) == 6:
-        fh=open(f"users/{username}.txt", "w+")
+    if not os.path.exists(f"{os.getcwd()}/users/{username}.txt") and len(password) == 6:
+        fh=open(f"users/{username}.txt", "w")
         fh.write(f"{password} \n")
         fh.close()
     elif len(password) != 6:
@@ -477,14 +480,14 @@ def search():
 
         
 # ValueError
-pics = [PhotoImage(file=f"images/{items[screen-1][0][0]}.png"),
-        PhotoImage(file=f"images/{items[screen-1][1][0]}.png"),
-        PhotoImage(file=f"images/{items[screen-1][2][0]}.png"),
-        PhotoImage(file=f"images/{items[screen-1][3][0]}.png"),
-        PhotoImage(file=f"images/{items[screen-1][4][0]}.png"),
-        PhotoImage(file=f"images/{items[screen-1][5][0]}.png"),
-        PhotoImage(file="images/back.PNG"),
-        PhotoImage(file="images/search.png")]
+pics = [PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][0][0]}.png"),
+        PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][1][0]}.png"),
+        PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][2][0]}.png"),
+        PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][3][0]}.png"),
+        PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][4][0]}.png"),
+        PhotoImage(file=f"{os.getcwd()}/images/{items[screen-1][5][0]}.png"),
+        PhotoImage(file=f"{os.getcwd()}/images/back.PNG"),
+        PhotoImage(file=f"{os.getcwd()}/images/search.png")]
 
 frame_login = Frame(root, background="WHITE")
 frame_main = Frame(root, background="WHITE")
